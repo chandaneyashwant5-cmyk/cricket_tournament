@@ -1,471 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>COEP ZEST'26 - Cricket Tournament Posters Designed By Yashwant(Manu)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>ZEST'26 Cricket Posters</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Montserrat", sans-serif;
-      background:#020308;
-      color:#fff;
+<style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:Arial, Helvetica, sans-serif;background:#000;color:#fff;}
+
+    /* -------- HOME SCREEN -------- */
+    #home{
+        height:100vh;display:flex;flex-direction:column;
+        align-items:center;justify-content:center;text-align:center;padding:20px;
+        background:linear-gradient(135deg,#001f3f,#001020,#000);
     }
-
-    /* HOME SCREEN */
-    #home {
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
-      background:radial-gradient(circle at top, #20263f 0, #050712 60%, #020308 100%);
+    #home h1{font-size:2.3rem;letter-spacing:4px;margin-bottom:5px;text-transform:uppercase;font-weight:900;}
+    #home p{opacity:.8;margin-bottom:20px;font-size:.9rem;}
+    .options{display:grid;gap:15px;grid-template-columns:repeat(2,1fr);max-width:500px;width:100%;}
+    .btn{
+        padding:16px;border:1px solid rgba(255,255,255,.3);
+        background:#0b0b0b;color:white;border-radius:10px;
+        cursor:pointer;transition:.2s;font-size:.9rem;text-align:left;
     }
+    .btn:hover{transform:scale(1.05);border-color:#0ef;}
 
-    #home h1 {
-      font-size:clamp(2rem, 3vw, 2.6rem);
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      margin-bottom:6px;
+    /* -------- POSTERS BASE STYLE -------- */
+    .poster{display:none;height:100vh;position:relative;}
+    .poster-content{
+        position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+        width:80%;max-width:700px;text-align:center;
     }
-
-    #home h2 {
-      font-size:0.9rem;
-      letter-spacing:0.18em;
-      text-transform:uppercase;
-      opacity:0.8;
-      margin-bottom:18px;
+    .back{
+        position:absolute;top:20px;left:20px;font-size:.8rem;
+        border:1px solid white;padding:6px 12px;background:rgba(0,0,0,.4);
+        cursor:pointer;border-radius:6px;
     }
+    .heading{font-size:2.2rem;font-weight:900;text-transform:uppercase;letter-spacing:4px;}
+    .line{margin:8px auto;width:80px;height:4px;background:white;border-radius:20px;}
 
-    #home p {
-      font-size:0.9rem;
-      opacity:0.8;
-      margin-bottom:24px;
+    .count{font-size:2.8rem;font-weight:900;margin:10px 0;}
+    @keyframes blink{50%{opacity:.4;}}
+    .pulse{animation:blink 1.2s infinite;}
+
+    .desc{opacity:.9;margin-top:10px;font-size:1rem;line-height:1.4;}
+    .meta{margin-top:20px;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;opacity:.8;}
+    .tags{margin-top:6px;font-size:.8rem;opacity:.9;}
+    .footer{position:absolute;bottom:15px;width:100%;text-align:center;font-size:.75rem;opacity:.7;}
+
+    /* -------- UNIQUE TEMPLATE STYLES -------- */
+
+    /* Poster 1 – IPL Style Explosion */
+    #poster1{
+        background:url('https://i.ibb.co/7KGhYVH/stadium-night.jpg') center/cover;
     }
+    #poster1 .heading{color:#ffdc00;}
+    #poster1 .count{color:#ff4136;text-shadow:0 0 10px #ff4136;}
 
-    .btn-grid {
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:14px;
-      width:100%;
-      max-width:520px;
+    /* Poster 2 – Clean White Minimal with bat icon */
+    #poster2{
+        background:white;color:black;
     }
-
-    .opt-btn {
-      padding:14px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.18);
-      background:rgba(0,0,0,0.6);
-      cursor:pointer;
-      color:#fff;
-      text-align:left;
-      transition:0.18s;
-    }
-
-    .opt-btn:hover {
-      transform:translateY(-3px);
-      border-color:#00f0ff;
-      box-shadow:0 12px 30px rgba(0,0,0,0.6);
+    #poster2 .heading{color:#111;}
+    #poster2 .line{background:black;}
+    #poster2 .count{color:#0074D9;}
+    #bat{
+        font-size:4rem;margin-bottom:10px;
     }
 
-    .opt-main {
-      font-size:0.9rem;
-      font-weight:600;
-      margin-bottom:3px;
+    /* Poster 3 – Chalkboard / Strategy Board Theme */
+    #poster3{
+        background:url('https://i.ibb.co/1TgfFjZ/grass.jpg') center/cover;
     }
+    #poster3 .poster-content{
+        background:rgba(0,0,0,.6);
+        padding:25px;border-radius:10px;
+    }
+    #poster3 .count{color:#2ecc71;}
 
-    .opt-sub {
-      font-size:0.75rem;
-      opacity:0.8;
+    /* Poster 4 – Dark Cinematic Spotlight */
+    #poster4{
+        background:url('https://i.ibb.co/zRhnf5M/spotlight.jpg') center/cover;
     }
+    #poster4 .heading{text-shadow:0 0 20px white;}
+    #poster4 .count{color:#00eaff;text-shadow:0 0 12px #00eaff;}
+    #poster4 .desc{font-style:italic;}
 
-    /* COMMON POSTER BASE */
-    .poster {
-      display:none;
-      height:100vh;
-      position:relative;
-      padding:26px 20px;
-      text-align:center;
-      overflow:hidden;
-    }
-
-    .poster-inner {
-      height:100%;
-      max-width:900px;
-      margin:0 auto;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,0.14);
-      position:relative;
-      padding:28px 18px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .back-btn {
-      position:absolute;
-      top:16px;
-      left:16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.4);
-      background:rgba(0,0,0,0.7);
-      color:#fff;
-      font-size:0.7rem;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
-      padding:6px 14px;
-      cursor:pointer;
-    }
-
-    .poster-top-tag {
-      font-size:0.75rem;
-      letter-spacing:0.2em;
-      text-transform:uppercase;
-      opacity:0.78;
-      margin-bottom:8px;
-    }
-
-    .poster-title {
-      font-size:clamp(1.8rem, 3.6vw, 2.6rem);
-      font-weight:900;
-      letter-spacing:0.18em;
-      text-transform:uppercase;
-      margin-bottom:4px;
-    }
-
-    .poster-subtitle {
-      font-size:0.8rem;
-      letter-spacing:0.20em;
-      text-transform:uppercase;
-      opacity:0.8;
-      margin-bottom:18px;
-    }
-
-    .count-label {
-      font-size:0.8rem;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
-      opacity:0.8;
-      margin-bottom:4px;
-    }
-
-    .count-main {
-      font-size:clamp(2.4rem, 4.5vw, 3.2rem);
-      font-weight:900;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      margin-bottom:14px;
-    }
-
-    .poster-text {
-      font-size:0.9rem;
-      max-width:520px;
-      opacity:0.9;
-      margin-bottom:16px;
-    }
-
-    .poster-meta {
-      font-size:0.8rem;
-      letter-spacing:0.14em;
-      text-transform:uppercase;
-      opacity:0.78;
-      margin-bottom:6px;
-    }
-
-    .poster-hash {
-      font-size:0.78rem;
-      opacity:0.9;
-    }
-
-    .poster-hash span { margin:0 4px; }
-
-    .poster-bottom {
-      position:absolute;
-      bottom:16px;
-      left:50%;
-      transform:translateX(-50%);
-      font-size:0.75rem;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
-      opacity:0.8;
-    }
-
-    @keyframes pulse {
-      0% { transform:scale(1); opacity:1; }
-      50% { transform:scale(1.03); opacity:0.88; }
-      100% { transform:scale(1); opacity:1; }
-    }
-    .pulse { animation:pulse 1.3s infinite ease-in-out; }
-
-    /* POSTER 1 – STADIUM HYPE / TOSS VIBE */
-    #p1 {
-      background:url('https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-    }
-    #p1 .poster-inner {
-      background:radial-gradient(circle at top, rgba(0,0,0,0.2) 0, rgba(0,0,0,0.85) 55%);
-    }
-    #p1 .count-main { text-shadow:0 0 14px rgba(255,255,255,0.9); }
-
-    /* POSTER 2 – SCOREBOARD / RUNS-WICKETS THEME */
-    #p2 {
-      background:#050910;
-    }
-    #p2 .poster-inner {
-      background:radial-gradient(circle at top, #111a2d 0, #050910 60%, #020308 100%);
-    }
-    .score-box {
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,0.2);
-      padding:10px 16px;
-      display:inline-flex;
-      gap:14px;
-      font-size:0.86rem;
-      margin-bottom:16px;
-    }
-    .score-item span {
-      font-size:0.68rem;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
-      display:block;
-      opacity:0.7;
-    }
-    .score-value {
-      font-weight:700;
-      margin-top:2px;
-    }
-
-    /* POSTER 3 – GULLY TO GROUND / HINGLISH FUN */
-    #p3 {
-      background:#101010;
-    }
-    #p3 .poster-inner {
-      background:radial-gradient(circle at top, #2c3e50 0, #101010 60%, #050505 100%);
-    }
-    .bubble {
-      background:rgba(0,0,0,0.6);
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,0.3);
-      padding:10px 14px;
-      font-size:0.9rem;
-      margin-bottom:16px;
-    }
-
-    /* POSTER 4 – NIGHT UNDER LIGHTS / SERIOUS TRAILER */
-    #p4 {
-      background:url('https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-      /* same img, but different treatment via overlay box */
-    }
-    #p4 .poster-inner {
-      background:rgba(0,0,0,0.82);
-    }
-    .side-note {
-      border-left:3px solid #ffffff;
-      padding-left:10px;
-      font-size:0.85rem;
-      max-width:420px;
-      margin:10px auto 0;
-      opacity:0.9;
-    }
-
-    @media (max-width:640px){
-      .poster-inner { padding:22px 14px; }
-      .poster-bottom { font-size:0.68rem; }
-    }
-  </style>
+</style>
 </head>
 <body>
 
-<!-- HOME SCREEN -->
+<!-- ---------- HOME SCREEN ---------- -->
 <div id="home">
-  <h1>ZEST'26 CRICKET</h1>
-  <h2>5 DAYS TO GO</h2>
-  <p>Select a poster style – all are only for the<br><b>COEP ZEST'26 Cricket Tournament</b>.</p>
+    <h1>ZEST'26 CRICKET</h1>
+    <p>Choose poster style</p>
 
-  <div class="btn-grid">
-    <button class="opt-btn" onclick="showPoster('p1')">
-      <div class="opt-main">🏟 Stadium Hype</div>
-      <div class="opt-sub">Toss, crowd, floodlights – pure tournament feel.</div>
-    </button>
-
-    <button class="opt-btn" onclick="showPoster('p2')">
-      <div class="opt-main">📊 Scoreboard Mode</div>
-      <div class="opt-sub">Overs, runs, wickets – stats-style poster.</div>
-    </button>
-
-    <button class="opt-btn" onclick="showPoster('p3')">
-      <div class="opt-main">🏏 Gully To Ground</div>
-      <div class="opt-sub">Hinglish banter, COEP inside vibe.</div>
-    </button>
-
-    <button class="opt-btn" onclick="showPoster('p4')">
-      <div class="opt-main">🎬 Night Match Trailer</div>
-      <div class="opt-sub">Serious, cinematic, big-tournament tension.</div>
-    </button>
-  </div>
+    <div class="options">
+        <button class="btn" onclick="showPoster('poster1')">🔥 IPL Theme</button>
+        <button class="btn" onclick="showPoster('poster2')">🏏 Minimal Clean</button>
+        <button class="btn" onclick="showPoster('poster3')">🎯 Strategy Board</button>
+        <button class="btn" onclick="showPoster('poster4')">🎬 Cinematic</button>
+    </div>
 </div>
 
-<!-- POSTER 1 – TOSS / STADIUM HYPE -->
-<div id="p1" class="poster">
-  <div class="poster-inner">
-    <button class="back-btn" onclick="goHome()">← Back</button>
-
-    <div class="poster-top-tag">College of Engineering, Pune (COEP Tech)</div>
-    <div class="poster-title">Zest'26</div>
-    <div class="poster-subtitle">Cricket Tournament</div>
-
-    <div class="count-label">Countdown to first ball</div>
-    <div class="count-main pulse">5 Days To Go</div>
-
-    <div class="poster-text">
-      5 din baad sirf two things matter: <b>toss</b> and <b>temperament</b>.<br>
-      Ground ready. Umpires ready. Question is – <b>team ready?</b>
+<!-- ---------- POSTER 1 ---------- -->
+<div id="poster1" class="poster">
+    <button class="back" onclick="goHome()">← Back</button>
+    <div class="poster-content">
+        <div class="heading">ZEST'26 Cricket</div>
+        <div class="line"></div>
+        <div class="count pulse">5 Days To Go</div>
+        <div class="desc">
+            The lights. The roar. The pressure.<br>
+            This time — play like the arena belongs to you.
+        </div>
+        <div class="meta">COEP Ground</div>
+        <div class="tags">#ZestCricket #COEP #BringItOn</div>
     </div>
-
-    <div class="poster-meta">Venue · COEP Ground · ZEST'26 Cricket</div>
-    <div class="poster-hash">
-      <span>#ZEST26Cricket</span>
-      <span>#COEPTech</span>
-      <span>#PlayForTheBadge</span>
-    </div>
-
-    <div class="poster-bottom">
-      Finalise Line-up · Practice Nets · Lock Your Playing XI
-    </div>
-  </div>
+    <div class="footer">Warmup · Practice · Lock Playing XI</div>
 </div>
 
-<!-- POSTER 2 – SCOREBOARD / RUNS-WICKETS THEME -->
-<div id="p2" class="poster">
-  <div class="poster-inner">
-    <button class="back-btn" onclick="goHome()">← Back</button>
-
-    <div class="poster-top-tag">COEP Tech · ZEST'26</div>
-    <div class="poster-title">Cricket Tournament</div>
-    <div class="poster-subtitle">Inter-college battle on one pitch</div>
-
-    <div class="score-box">
-      <div class="score-item">
-        <span>Days Left</span>
-        <div class="score-value pulse">5</div>
-      </div>
-      <div class="score-item">
-        <span>Target</span>
-        <div class="score-value">Maximum Runs</div>
-      </div>
-      <div class="score-item">
-        <span>Required</span>
-        <div class="score-value">Zero Fear</div>
-      </div>
+<!-- ---------- POSTER 2 ---------- -->
+<div id="poster2" class="poster">
+    <button class="back" onclick="goHome()">← Back</button>
+    <div class="poster-content">
+        <div id="bat">🏏</div>
+        <div class="heading">Cricket Tournament</div>
+        <div class="line"></div>
+        <div class="count pulse">5 Days Left</div>
+        <div class="desc">
+            No hype. No noise.<br>
+            Just the bat, the ball, and pure skill.
+        </div>
+        <div class="meta">COEP · ZEST'26</div>
+        <div class="tags">#Focus #Precision #CricketOnly</div>
     </div>
-
-    <div class="poster-text">
-      This isn’t a friendly knock. It’s the official
-      <b>ZEST'26 Cricket Tournament</b>.  
-      In 5 days, every dot ball, every single, every six will count.
-    </div>
-
-    <div class="poster-meta">Format · Limited Overs · Hard Tennis / Leather (as per rules)</div>
-    <div class="poster-hash">
-      <span>#ScoreBig</span>
-      <span>#ZEST26Cricket</span>
-      <span>#COEPians</span>
-    </div>
-
-    <div class="poster-bottom">
-      Fix Your Batting Order · Decide Bowlers · Plan Death Overs
-    </div>
-  </div>
+    <div class="footer">Fix batting order · Decide bowlers</div>
 </div>
 
-<!-- POSTER 3 – GULLY TO GROUND / HINGLISH FUN -->
-<div id="p3" class="poster">
-  <div class="poster-inner">
-    <button class="back-btn" onclick="goHome()">← Back</button>
-
-    <div class="poster-top-tag">From gully shots to proper sightscreen</div>
-    <div class="poster-title">Zest'26</div>
-    <div class="poster-subtitle">Cricket Tournament · COEP Ground</div>
-
-    <div class="count-label">Reality check</div>
-    <div class="count-main pulse">5 Days Left, Bro.</div>
-
-    <div class="bubble">
-      Gully mein “king of cricket” ho, theek hai…  
-      <b>Ab COEP ZEST'26 cricket tournament mein prove karo.</b>  
-      Pace ho ya spin – pitch sabko test karegi.
+<!-- ---------- POSTER 3 ---------- -->
+<div id="poster3" class="poster">
+    <button class="back" onclick="goHome()">← Back</button>
+    <div class="poster-content">
+        <div class="heading">ZEST Cricket</div>
+        <div class="line"></div>
+        <div class="count pulse">5 Days</div>
+        <div class="desc">
+            Plans are good.<br>
+            Execution wins matches.
+        </div>
+        <div class="meta">COEP Ground</div>
+        <div class="tags">#Strategy #FieldSetup #WinSmart</div>
     </div>
-
-    <div class="poster-text">
-      Assemble your squad, finalise openers, aur ek kaam karo –  
-      <b>excuses ko pavilion mein hi chhod ke aana.</b>
-    </div>
-
-    <div class="poster-meta">Official ZEST'26 Cricket · COEP Tech Campus</div>
-    <div class="poster-hash">
-      <span>#GullySeGroundTak</span>
-      <span>#ZEST26Cricket</span>
-      <span>#NoTimeForDotBall</span>
-    </div>
-
-    <div class="poster-bottom">
-      Tag Your Team · Book Nets · Fix Team Name & Jersey Color
-    </div>
-  </div>
+    <div class="footer">Discuss Powerplay · Death overs · Fielding</div>
 </div>
 
-<!-- POSTER 4 – NIGHT MATCH / SERIOUS TRAILER -->
-<div id="p4" class="poster">
-  <div class="poster-inner">
-    <button class="back-btn" onclick="goHome()">← Back</button>
-
-    <div class="poster-top-tag">COEP Tech Presents</div>
-    <div class="poster-title">Zest'26 Cricket</div>
-    <div class="poster-subtitle">Tournament Under The Lights</div>
-
-    <div class="count-label">In just</div>
-    <div class="count-main pulse">5 Days</div>
-
-    <div class="poster-text">
-      When the floodlights turn on and the field goes quiet before the first ball –  
-      you’ll know this isn’t just another match.  
-      It’s <b>ZEST'26 Cricket Tournament</b>.
+<!-- ---------- POSTER 4 ---------- -->
+<div id="poster4" class="poster">
+    <button class="back" onclick="goHome()">← Back</button>
+    <div class="poster-content">
+        <div class="heading">5 Days To Go</div>
+        <div class="line"></div>
+        <div class="desc">
+            When the whistle blows, and the first ball swings,<br>
+            everything else disappears — except cricket.
+        </div>
+        <div class="meta">ZEST'26 Cricket Tournament</div>
+        <div class="tags">#BigStage #ZeroFear #LockIn</div>
     </div>
-
-    <div class="side-note">
-      Runs will fade. Scorecards will get lost.  
-      But that one spell, that one chase, that one catch –  
-      COEP yaad rakhega.
-    </div>
-
-    <div class="poster-meta">Venue · COEP Cricket Ground · ZEST'26</div>
-    <div class="poster-hash">
-      <span>#UnderTheLights</span>
-      <span>#ZEST26Cricket</span>
-      <span>#WriteYourInnings</span>
-    </div>
-
-    <div class="poster-bottom">
-      Confirm Playing XI · Warm Up Properly · Walk In Like It’s A Final
-    </div>
-  </div>
+    <div class="footer">Get ready · Show up · Play with pride</div>
 </div>
 
 <script>
-  function showPoster(id) {
-    document.getElementById('home').style.display = 'none';
-    document.querySelectorAll('.poster').forEach(p => p.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-  }
-
-  function goHome() {
-    document.querySelectorAll('.poster').forEach(p => p.style.display = 'none');
-    document.getElementById('home').style.display = 'flex';
-  }
+function showPoster(id){
+    document.getElementById('home').style.display='none';
+    document.querySelectorAll('.poster').forEach(p=>p.style.display='none');
+    document.getElementById(id).style.display='block';
+}
+function goHome(){
+    document.querySelectorAll('.poster').forEach(p=>p.style.display='none');
+    document.getElementById('home').style.display='flex';
+}
 </script>
 </body>
 </html>
-
